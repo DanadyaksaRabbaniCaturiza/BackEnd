@@ -1,0 +1,22 @@
+{
+  "expense": [
+    {
+      "id": 1,
+      "name": "mobil",
+      "nominal": 5,
+      "category": "transport"
+    },
+    {
+      "id": 1,
+      "name": "bike",
+      "nominal": 10,
+      "category": "transport"
+    },
+    {
+      "id": 1,
+      "name": "ramen",
+      "nominal": 5,
+      "category": "food"
+    }
+  ]
+}
