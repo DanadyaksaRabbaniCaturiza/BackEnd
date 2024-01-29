@@ -17,9 +17,25 @@ set sql_safe_updates = 0; -- disable
 update actor set first_name = "GEORGE" where last_name = "DAVIS";
 
 -- 6. Find top 10 actor with the most perform on film.
-select actor.actor_id, count(film_actor.film_id)  as film_count, actor.first_name,actor.last_name from actor inner join actor on actor.actor_id = film_actor.actor_id GROUP BY actor.actor_id ORDER BY film_count DESC LIMIT 10;
+select actor.actor_id, actor.first_name, actor.last_name, count(film_actor.actor_id) as film_count from actor inner join film_actor on actor.actor_id = film_actor.actor_id GROUP BY actor.actor_id ORDER BY film_count DESC LIMIT 10;
 
+-- 7. Display title, description, length, and rating from film, where special features include deleted scenes and behind
+-- the scenes order by most length
+select title, description, rating, length,special_features from film where special_features like '%Deleted Scenes,Behind the Scenes%' order by length;
+
+-- 8. Display country and total of inactive customer (active = 0) from country where customer active = 0 order by the
+-- highest inactive (active = 0) customer
+
+select customer_list.country, count(*) as inactive_count  
+from customer  
+inner join customer_list on customer_list.ID = customer.customer_id 
+where active = 0 
+group by country
+order by inactive_count desc  ;
 
 SELECT * FROM ACTOR;
 SELECT * FROM film_actor;
 SELECT * FROM film;
+select * from customer_list;
+SELECT * FROM customer;
+SELECT * FROM country;
