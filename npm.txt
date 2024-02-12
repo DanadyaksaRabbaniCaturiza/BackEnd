@@ -7,3 +7,5 @@
  npm i @types/bcrypt 
  npm i cors @types/cors
  npm i mysql2 @types/mysql2
+
+ npm i express @types/express mysql2 prisma @prisma/client jsonwebtoken bcrypt @types/bcrypt  cors dotenv @types/dotenv
