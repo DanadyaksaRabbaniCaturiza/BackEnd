@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:andromeda1@localhost:3306/ecommerce_prisma"
+}
+
+enum Gender {
+  male
+  female
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String
+  profileImg   String?
+  username     String
+  gender       Gender
+  created_at   DateTime       @default(now())
+  Transactions Transactions[]
+  Cart         Cart[]
+}
+
+model Product {
+  id               Int                @id @default(autoincrement())
+  Img              String?
+  Name             String
+  Desc             String
+  Stock            Int
+  Price            Int
+  Product_Category Product_Category[]
+  Product_Cart     Product_Cart[]
+}
+
+model Product_Category {
+  product_id  Int
+  category_id Int
+
+  product  Product  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  category Category @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([product_id, category_id])
+}
+
+model Category {
+  id               Int                @id @default(autoincrement())
+  categoryName     String
+  categoryQty      Int
+  Product_Category Product_Category[]
+}
+
+model Transactions {
+  id           Int      @id
+  user_id      Int
+  totalPayment Int
+  createdAt    DateTime @default(now())
+  checkOutAt   DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Product_Cart {
+  product_id Int
+  cart_id    Int
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cart    Cart    @relation(fields: [cart_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([product_id, cart_id])
+}
+
+model Cart {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  qty        Float
+  totalprice Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+
+  // Define foreign key
+  user         User           @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Product_Cart Product_Cart[]
+}
