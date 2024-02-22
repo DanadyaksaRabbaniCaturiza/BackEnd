@@ -9,8 +9,3 @@ route.get("/send-mail", userController.sendMail);
 route.get("/keep-login", userController.keepLogin);
 route.post("/", userController.register);
 route.patch("/", userController.forgotPassword);
-
-// (req: Request, res: Response, next: NextFunction) => {
-//   console.log("hello");
-//   next();
-// },

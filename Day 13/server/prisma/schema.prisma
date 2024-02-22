@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:andromeda1@localhost:3306/db_todos"
+}
+
+enum Role {
+  user
+  admin
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role?     @default(user)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  todos     Todo[]
+}
+
+model Todo {
+  id        String   @id @default(uuid())
+  userId    String   @default(uuid())
+  task      String
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

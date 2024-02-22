@@ -4,10 +4,10 @@ services:
   mysql:
     image: mysql:latest
     ports:
-      - "3307:3306"
+      - 3307:3306
     environment:
-      - MYSQL_ROOT_PASSWORD = root
+      - MYSQL_ROOT_PASSWORD=root
   adminer:
     image: adminer
     ports:
-      - "8080:8080"
+      - 8080:8080

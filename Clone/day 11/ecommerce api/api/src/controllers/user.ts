@@ -2,11 +2,11 @@
 import { Response, Request, NextFunction } from "express";
 import { prisma, secretKey } from ".."; //accessing model
 import { Prisma } from "@prisma/client"; // accessing interface/types
-
 import { genSalt, hash, compare } from "bcrypt";
 import { sign, verify } from "jsonwebtoken";
 import { mailer, transport } from "../lib/nodemailer";
 import mustache, { render } from "mustache";
+
 import fs from "fs";
 type TUser = {
   email: string;

@@ -20,6 +20,7 @@ export const userController = {
       next(error);
     }
   },
+
   async register(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password, username, gender } = req.body;
@@ -52,6 +53,7 @@ export const userController = {
       next(error);
     }
   },
+
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.query;

@@ -1,11 +1,8 @@
  npm init --y
+ npm i express @types/express prisma @prisma/client jsonwebtoken @types/jsonwebtoken bcrypt @types/bcrypt cors @types/cors mysql2 @types/mysql2
  npm i express @types/express 
- npm i prisma @types/express
- npm i @prisma/client
+ npm i prisma @prisma/client
  npm i jsonwebtoken @types/jsonwebtoken
- npm i bcrypt
- npm i @types/bcrypt 
+ npm i bcrypt @types/bcrypt 
  npm i cors @types/cors
  npm i mysql2 @types/mysql2
-
- npm i express @types/express mysql2 prisma @prisma/client jsonwebtoken bcrypt @types/bcrypt  cors dotenv @types/dotenv
